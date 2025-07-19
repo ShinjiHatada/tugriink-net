@@ -1,16 +1,262 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ツグリインク</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ツグリインク | 買い物メモアプリ PickLog</title>
+    <style>
+        /* 基本スタイル */
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; /* シンプルで視認性の高いフォント */
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333; /* 落ち着いた黒色 */
+            background-color: #f9f9f9; /* ごくわずかにグレーがかった背景色 */
+        }
+        h1, h2, h3 {
+            color: #222; /* より濃い黒 */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 2.5em; /* 大きなタイトル */
+            margin-top: 40px;
+        }
+        h2 {
+            font-size: 1.8em;
+            border-bottom: 2px solid #eee; /* 薄い下線でセクションを区切る */
+            padding-bottom: 10px;
+        }
+        p {
+            margin-bottom: 1em;
+        }
+        a {
+            color: #007bff; /* 標準的な青系のリンク色 */
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* ヘッダー */
+        header {
+            background-color: #fff;
+            padding: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* わずかな影で立体感を出す */
+        }
+        header h1 {
+            margin: 0; /* h1のデフォルトマージンをリセット */
+        }
+        header h1 img {
+            height: 40px; /* ロゴの高さ */
+            width: auto; /* 幅は自動調整 */
+        }
+        header p {
+            text-align: center;
+            font-size: 1.1em;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        /* メインコンテンツのコンテナ */
+        main {
+            max-width: 800px; /* PCでの最大幅 */
+            margin: 20px auto; /* 中央寄せ */
+            padding: 0 20px; /* 左右の余白 */
+        }
+        section {
+            background-color: #fff;
+            padding: 30px;
+            margin-bottom: 30px; /* セクション間の余白 */
+            border-radius: 8px; /* 角丸 */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08); /* わずかな影 */
+        }
+
+        /* PickLogヒーローセクション */
+        #picklog-hero {
+            text-align: center;
+        }
+        #picklog-hero h2 {
+            border-bottom: none; /* ロゴの下にあった下線を削除 */
+            padding-bottom: 0;
+            margin-bottom: 10px; /* ロゴと下の画像との間隔を調整 */
+        }
+        #picklog-hero h2 img {
+            height: 38px; /* ロゴの高さをさらに小さく */
+            width: auto;
+        }
+        .screenshots {
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* 画像間のスペース */
+            flex-wrap: wrap; /* 小さな画面では折り返す */
+            margin-top: 20px;
+        }
+        .screenshots img {
+            max-width: 48%; /* PCでも2列で大きく表示 */
+            height: auto;
+            border-radius: 8px;
+            object-fit: contain; /* アスペクト比を維持 */
+            min-width: 120px; /* 画像が小さくなりすぎないように */
+        }
+        #picklog-hero .screenshots + p {
+            margin-top: 30px; /* スクリーンショットと説明文の間隔 */
+        }
+        #picklog-hero .button-container { /* ボタンを囲むdiv */
+            margin-top: 40px; /* 説明文とボタンの間隔を調整 */
+        }
+        #picklog-hero a { /* ダウンロードボタン */
+            display: inline-block; /* 横並びにしつつ、ブロック要素の特性も持たせる */
+            background-color: #007bff; /* ボタンの色 */
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 25px; /* 丸みを帯びたボタン */
+            margin: 0 10px 10px; /* ボタン間の余白と下余白 */
+            font-weight: bold;
+            transition: background-color 0.3s ease; /* ホバー時のアニメーション */
+            white-space: nowrap; /* ボタン内のテキストが改行されないように */
+            text-decoration: none; /* 下線を削除 */
+        }
+        #picklog-hero a:hover {
+            background-color: #0056b3; /* ホバー時の色 */
+            text-decoration: none;
+        }
+
+        /* 会社概要セクション */
+        #company-profile dl {
+            display: grid;
+            grid-template-columns: 120px 1fr; /* ラベル列の幅を固定 */
+            gap: 15px 20px; /* 行と列の間のスペース */
+            margin-top: 20px;
+            text-align: left;
+        }
+        #company-profile dt {
+            font-weight: bold;
+            color: #555;
+            grid-column: 1 / 2;
+        }
+        #company-profile dd {
+            margin: 0; /* ddのデフォルトマージンをリセット */
+            grid-column: 2 / 3;
+        }
+
+
+        /* その他のセクションのテキスト配置 */
+        #future-apps p {
+            text-align: left; /* テキストを左寄せに */
+        }
+
+        /* フッター */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333; /* 暗めの背景 */
+            color: #f9f9f9; /* 明るいテキスト色 */
+            font-size: 0.9em;
+            margin-top: 40px;
+        }
+        footer ul {
+            list-style: none; /* リストの点を削除 */
+            padding: 0;
+            margin: 10px 0 0;
+            display: flex; /* 横並び */
+            justify-content: center; /* 中央寄せ */
+        }
+        footer ul li {
+            margin: 0 10px;
+        }
+        footer ul li a {
+            color: #f9f9f9;
+        }
+        footer ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* レスポンシブデザイン（モバイル対応） */
+        @media (max-width: 768px) { /* 画面幅が768px以下の場合 */
+            h1 {
+                font-size: 2em; /* タイトルを小さく */
+            }
+            h2 {
+                font-size: 1.5em; /* 見出しを小さく */
+            }
+            main {
+                margin: 10px auto;
+                padding: 0 15px;
+            }
+            section {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+            #picklog-hero a {
+                display: block; /* スマートフォンではボタンを縦に並べる */
+                margin: 10px auto;
+                max-width: 250px; /* ボタンの最大幅を制限 */
+            }
+        }
+        @media (max-width: 480px) {
+            .screenshots img {
+                max-width: 100%; /* 1列にする */
+            }
+            #company-profile dl {
+                grid-template-columns: 1fr; /* 1列レイアウトに変更 */
+                gap: 5px 0;
+            }
+            #company-profile dt, #company-profile dd {
+                grid-column: 1 / 2; /* 全て1列目に配置 */
+            }
+            #company-profile dd {
+                margin-bottom: 10px; /* 各項目の下に余白を追加 */
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>会社概要</h1>
-  <p><strong>名称：</strong>ツグリインク [tugriink]</p>
-  <p><strong>代表：</strong>畑田 晋治</p>
-  <p><strong>設立：</strong>2024年5月</p>
-  <p><strong>事業内容：</strong>スマートフォンアプリの開発と運営</p>
-  <p><strong>お問い合わせ：</strong>tugriink@gmail.com</p>
+    <header>
+        <h1><img src="images/logo.svg" alt="Tugriink" /></h1>
+        <p>家族の毎日を、もっと豊かに。</p>
+    </header>
+
+    <main>
+        <section id="picklog-hero">
+            <h2><img src="images/picklog_logo.svg" alt="PickLog 買い物メモアプリ" /></h2>
+            <p>シンプルな操作で、買い忘れを防ぎ、家族の買い物をスムーズにするアプリです。</p>
+            <div class="screenshots">
+                <img src="images/picklog-jp-01.png" alt="シンプルで使いやすい買い物メモアプリ" />
+                <img src="images/picklog-jp-02.png" alt="キッチンで話すだけ。買い物メモができる。" />
+                <img src="images/picklog-jp-03.png" alt="あるもので、作れる料理がわかる。" />
+                <img src="images/picklog-jp-04.png" alt="カゴに入れたものが見えるから迷わない。" />
+            </div>
+            
+            <div class="button-container">
+                <a href="https://apps.apple.com/us/app/picklog/id6748137258" target="_blank" rel="noopener noreferrer">App Storeでダウンロード</a>
+                <a href="https://play.google.com/store/apps/details?id=com.picklog.pick_log" target="_blank" rel="noopener noreferrer">Google Playでダウンロード</a>
+            </div>
+        </section>
+
+        <section id="company-profile">
+            <h2>会社概要</h2>
+            <dl>
+                <dt>名称</dt>
+                <dd>ツグリインク | tugriink</dd>
+                <dt>代表</dt>
+                <dd>畑田 晋治</dd>
+                <dt>設立</dt>
+                <dd>2024年5月</dd>
+                <dt>事業内容</dt>
+                <dd>スマートフォンアプリの開発と運営</dd>
+            </dl>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2025 tugriink. All Rights Reserved.</p>
+        <ul>
+            <li><a href="https://twitter.com/tugriink" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+            <li><a href="https://instagram.com/tugriink" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        </ul>
+    </footer>
 </body>
 </html>
