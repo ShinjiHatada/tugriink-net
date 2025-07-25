@@ -5,39 +5,68 @@
   <title>プライバシーポリシー - PickLog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body { font-family: sans-serif; line-height: 1.6; padding: 20px; max-width: 800px; margin: 0 auto;font-size: 4vw; }
+    body { font-family: sans-serif; line-height: 1.6; padding: 20px; max-width: 800px; margin: 0 auto;font-size: 3.2vw; }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 5.5vw;
+        }
 
-h1 {
-  font-size: 7vw; /* 例: ビューポートの幅の7% */
-  color: #333;
-}
+        h2 {
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            font-size: 4.5vw;
+        }
 
-h2 {
-  font-size: 5.5vw; /* 例: ビューポートの幅の5.5% */
-  color: #333;
-}
+        p {
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 10px;
+            font-size: 3.2vw;
+        }
 
-p {
-  font-size: 4vw; /* 例: ビューポートの幅の4% */
-  color: #555;
-  line-height: 1.6; /* 行の高さも調整して読みやすく */
-}
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
 
-/* 小さすぎる画面では最小値を設定するなどの調整も有効です */
-@media (max-width: 320px) {
-  body {
-    font-size: 16px; /* 例: iPhone SEなどの小さい画面では固定ピクセル値 */
-  }
-  h1 {
-    font-size: 28px;
-  }
-  h2 {
-    font-size: 22px;
-  }
-  p {
-    font-size: 16px;
-  }
-}
+        li {
+            margin-bottom: 5px;
+            font-size: 3.2vw;
+            color: #555;
+        }
+
+        /* 小さい画面向けの調整 */
+        @media (max-width: 320px) {
+            body { font-size: 13px; }
+            h1 { font-size: 20px; }
+            h2 { font-size: 17px; }
+            p, li { font-size: 13px; }
+        }
+
+        @media (max-width: 375px) {
+            body { font-size: 14px; }
+            h1 { font-size: 22px; }
+            h2 { font-size: 18px; }
+            p, li { font-size: 14px; }
+        }
+
+        /* 大きい画面向けの調整 */
+        @media (min-width: 768px) {
+            body { font-size: 16px; }
+            h1 { font-size: 28px; }
+            h2 { font-size: 22px; }
+            p, li { font-size: 16px; }
+        }
+
+        @media (min-width: 1024px) {
+            body { font-size: 17px; }
+            h1 { font-size: 30px; }
+            h2 { font-size: 24px; }
+            p, li { font-size: 17px; }
+        }
   </style>
 </head>
 <body>
