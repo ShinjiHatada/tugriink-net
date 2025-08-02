@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [ "SRWDUJA9Q5.com.picklog.picklog" ],
+        "components": [
+          {
+            "/": "/join",
+            "comment": "Matches the group invitation path"
+          }
+        ]
+      }
+    ]
+  }
+}
